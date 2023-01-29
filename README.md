@@ -30,4 +30,4 @@
  - `pip install mediapipe`
 
 ## Authors
-Created by FRC Team 1747 and all respective contributors
+Created by FRC Team 1747 and all respective contributors.
