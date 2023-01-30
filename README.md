@@ -20,11 +20,26 @@
  
 ### Usage:
  - Clone the repository and open `hand.py`
- - Change the `webcam_port` on line 5, Where `webcam_port` is an integer with a default of 0.
+ - Change the `webcam_port` on line 5, where `webcam_port` is an integer with a default of 0.
  > cap = cv2.VideoCapture(webcam_port)
  - Set the desired resolution by changing `width` and `height`
  > **Note:** It is recommended to use the resolution that your webcam is outputting to avoid severe distortion
 
+### NOTE: The correct dependencies must be installed for this project to work.
+ - `pip install cv2`
+ - `pip install mediapipe`
+ 
+## Body Skeleton Detection
+ The project is solely created to act as a PR version of the AprilTag onboard robot detection system.  Rather than finding an AprilTag and tracking it, the skeleton program looks for the most visible part of the body, specified by the user, and outputs the coordinates.
+ 
+### Usage:
+ - Clone the repository and open `skeleton.py`
+ - Change the `webcam_port` on line 18, where `webcam_port` is an integer with a default of 0.
+  > cap = cv2.VideoCapture(webcam_port)
+ - On lines 34 and 37, change `body_part` to the desired body part, where `body_part` is an integer with a default of 0.
+  > `results.pose_landmarks.landmark[body_part]`
+  > **NOTE:** The specific body part *must* be the respective integer.  Use the image below as a guide. `left_hip` and `right_hip` have been specifically put into the code and are *NOT* exceptions to the integer requirement. See lines 9 and 10.
+  
 ### NOTE: The correct dependencies must be installed for this project to work.
  - `pip install cv2`
  - `pip install mediapipe`
