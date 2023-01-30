@@ -37,7 +37,7 @@
  - Change the `webcam_port` on line 18, where `webcam_port` is an integer with a default of 0.
   > cap = cv2.VideoCapture(webcam_port)
  - On lines 34 and 37, change `body_part` to the desired body part, where `body_part` is an integer with a default of 0.
-  > `results.pose_landmarks.landmark[body_part]`
+  > `results.pose_landmarks.landmark[body_part]` <br>
   > **NOTE:** The specific body part *must* be the respective integer.  Use the image below as a guide. `left_hip` and `right_hip` have been specifically put into the code and are *NOT* exceptions to the integer requirement. See lines 9 and 10.
   
 ### NOTE: The correct dependencies must be installed for this project to work.
