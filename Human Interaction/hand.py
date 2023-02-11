@@ -4,7 +4,7 @@ import time
 from networktables import NetworkTables
 import threading
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(2)
 
 # Network Tables Initiation
 
@@ -94,12 +94,13 @@ while True:
         for handLms in results.multi_hand_landmarks:
             for id, lm in enumerate(handLms.landmark):
 
-
                 # Data exportation code
                 # lm.x/y/z gives the resprcitve x, y, or z coordinate
 
                 # print(lm.x)
                 nTable.putNumber("Hand X", lm.x)
+                nTable.putNumber("Hand Y", lm.y)
+                nTable.putNumber("hand Z", lm.z)
                 # if (lm.x > 0.35 and lm.x < 0.4):
                 #     print("Center")
 
@@ -109,7 +110,12 @@ while True:
                 #if id ==0:
                 cv2.circle(img, (cx,cy), 2, (255,0,255), cv2.FILLED)
 
-            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+                mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+    else:
+        nTable.putNumber("Hand X", 0.0)
+        nTable.putNumber("Hand Y", 0.0)
+        nTable.putNumber("hand Z", 0.0)
+
 
 
     cTime = time.time()
