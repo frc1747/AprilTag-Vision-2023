@@ -12,7 +12,7 @@
  - Where `webcam_port` is an integer with a default of 0.
 
 ### NOTE: The correct dependencies must be installed for this project to work.
- - `pip install cv2`
+ - `pip install opencv-python`
  - `pip install pupil_apriltags`
 
 ## Hand Detection
@@ -26,7 +26,7 @@
  > **Note:** It is recommended to use the resolution that your webcam is outputting to avoid severe distortion
 
 ### NOTE: The correct dependencies must be installed for this project to work.
- - `pip install cv2`
+ - `pip install opencv-python`
  - `pip install mediapipe`
  
 ## Body Skeleton Detection
@@ -41,8 +41,48 @@
   > **NOTE:** The specific body part *must* be the respective integer.  Use the image below as a guide. `left_hip` and `right_hip` have been specifically put into the code and are *NOT* exceptions to the integer requirement. See lines 9 and 10.
   
 ### NOTE: The correct dependencies must be installed for this project to work.
- - `pip install cv2`
+ - `pip install opencv-python`
  - `pip install mediapipe`
+
+## Game Piece Detection
+ This project focuses on detecting the cones and cubes for the 2023 Charged Up FRC game.  Utilizing OpenCV's contour detection library, the program looks for the nearest cone or cube and outlines the position through bounding circles.  The X values of the cube and cone locations are sent to networktables, which can be retrieved through the robot code.
+ 
+ ### Usage:
+ - Clone the repository and open `gamePiece.py`
+ - Change the `webcam_port` on line 72, where `webcam_port` is an integer with a default of 0.
+  > vs = VideoStream(src=webcam_port).start()
+ - Set the desired resolution by changing `width` and `height` on line 83
+  > **NOTE:** The `width` and `height` are automatically set to 640 and 480, respectively.  These *must* be determined for your specific webcam prior to use.
+ - Change the upper and lower bounds for the `cubeLower`, `cubeUpper`, `coneLower`, and `coneUpper` tuples on lines 89-90 and 103-104
+  > **NOTE:** These *must* be configured manually as they are different for every webcam and dependent on the lighting of the environment.
+  > Utilize `GRIP Pipelines` found in the repository to calibrate the webcam
+
+### NOTE: The correct dependencies must be installed for this project to work.
+ - `pip install opencv-python`
+ - `pip install imutils`
+ - `pip install argparse`
+ - `pip install collections`
+ - `pip install pynetworktables`
+ - `pip install threading`
+
+
+## GRIP Pipelines
+ These are the configurations for essentially optimal cone and cube configurations for the 2023 Charged Up FRC game.
+ 
+### Usage:
+ - Download GRIP found here: https://github.com/WPIRoboticsProjects/GRIP
+ - Configure as shown by the tutorial on the GRIP `readme`
+  > The goal is to get a `mask` that shows only the cone or the cube by editing the `HSV threshold` value
+ - Open GRIP and select `file`, then `open`
+ - Open the desired pipeline found in the `GRIP Pipelines` folder in this repository
+  > **NOTE:** On the left side, the webcam object may need to be removed to change the port.  
+  > If this is the case, remove the webcam, click on `add source`, then add the webcam with the correct port. Then drag the `image` dot from the webcam to the `src` dot of the HSV Threshold
+ - Under the HSV Threshold tab, edit the `hue`, `saturation`, and `value` sliders until the mask shows the object to the best of its abilities.
+  > **NOTE:** You may need to click on the eye icons under the `mask` tab in order to see it.
+ - When the mask is succesfully created, use the values on the left of the sliders to set the lower bounds, and the values to the right of the slider to set the upper bounds
+  > For example, `hue`: 113 - 168, `saturation`: 34 - 255, `value`: 71 - 255
+  > The lower bound will be `(113, 34, 71)` and the upper bound will be `(168, 255, 255)`
+ - Change the bounds on lines 89 - 90 and 134 - 135 to the ones calibrated earlier
 
 ## Authors
 Created by FRC Team 1747 and all respective contributors.
