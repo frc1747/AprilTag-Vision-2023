@@ -2,9 +2,9 @@
  This repository contains all custom-built AprilTag Detection code, as well as other vision projects that are in the works for the 2023, Charged Up season.
  
 ## Apriltag Detection
- As the flagship project, we decided to create a simple, yet efficient AprilTag detection software. Located in `main.py`. It should be noted that this code is *not* used on the robot, but instead acts as a proof of concept and PR tool. AprilTag code integrated into the robot has been made possible through PhotonVision: (https://photonvision.org/)
+ As the flagship project, we decided to create a simple, yet efficient AprilTag detection software. Located in `aprilTag.py`. It should be noted that this code is *not* used on the robot, but instead acts as a proof of concept and PR tool. AprilTag code integrated into the robot has been made possible through PhotonVision: (https://photonvision.org/)
 ### Usage:
- - Clone the repository and open `main.py`
+ - Clone the repository and open `aprilTag.py`
  - At the bottom, uncomment the detection mode that accomplishes what you are trying to do.
  > - `calibrate_camera_webcam(webcam_port)`: Deprecated. Use (https://www.calibdb.net/) instead.
  > - `detect_AprilTags(webcam_port)`: Detects and draws AprilTags on a webcam feed using the respective webcam port.
